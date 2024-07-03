@@ -197,7 +197,7 @@ class MainWindow(FramelessMainWindow):
         search_input.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         ############# CHECKBOX ################
-        self.search_checkbox = QCheckBox("Buscar en los módulos")
+        self.search_checkbox = QCheckBox("Buscar en los modulos")
         self.search_checkbox.setFont(self.window_font)
         self.search_checkbox.setStyleSheet("color: white; margin-bottom: 10px;")
 
@@ -259,6 +259,11 @@ class MainWindow(FramelessMainWindow):
         welcome_layout.setSpacing(20)
         welcome_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
+        logo_label = QLabel()
+        logo_pixmap = QPixmap(":/icons/HustCode1.png")
+        logo_label.setPixmap(logo_pixmap)
+        logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        welcome_layout.addWidget(logo_label)
 
         wlcm_title = self.create_label(
             "Bienvenido a Hustcode!",
@@ -267,8 +272,9 @@ class MainWindow(FramelessMainWindow):
             font_size=25,
             min_height=90,
         )
+
         wlcm_msg = self.create_label(
-            "Esto es un simple editor de código en fase de prueba.\nPuedes crear nuevos archivos o abrir los existentes.",
+            "Esto es un simple editor de c�digo en fase de prueba.\nPuedes crear nuevos archivos o abrir los existentes.",
             "color: #84878B;",
             Qt.AlignmentFlag.AlignHCenter,
             font_size=15,
@@ -377,7 +383,7 @@ class MainWindow(FramelessMainWindow):
         editor: Editor = self.tab_view.currentWidget()
         if editor.current_file_changed:
             dialog = self.show_dialog(
-                "Cerrar", f"¿Deseas guardar los cambios realizados en {self.current_file.name}?"
+                "Cerrar", f"�Deseas guardar los cambios realizados en {self.current_file.name}?"
             )
             if dialog == QMessageBox.Yes:
                 self.save_file()
@@ -442,7 +448,7 @@ class MainWindow(FramelessMainWindow):
         copy_action.setShortcut("Ctrl+C")
         copy_action.triggered.connect(self.copy)
 
-        comment = QAction("Comentar línea actual", self)
+        comment = QAction("Comentar l�nea actual", self)
         comment.setShortcut("Ctrl+/")
         comment.triggered.connect(self.comment)
         
@@ -509,8 +515,8 @@ class MainWindow(FramelessMainWindow):
         text_edit = self.get_editor(path, path.suffix)
         
         if is_new_file:
-            self.tab_view.addTab(text_edit, "Sin título")
-            self.setWindowTitle("Sin título - " + self.app_name)
+            self.tab_view.addTab(text_edit, "Sin t�tulo")
+            self.setWindowTitle("Sin t�tulo - " + self.app_name)
             self.statusBar().showMessage(f"Opened untitled", 2000)
             self.tab_view.setCurrentIndex(self.tab_view.count() - 1)
             self.current_file = None
@@ -535,7 +541,7 @@ class MainWindow(FramelessMainWindow):
 
     def new_file(self):
         # create new file
-        self.set_new_tab(Path("Sin título"), True)
+        self.set_new_tab(Path("Sin t�tulo"), True)
 
     def save_file(self):
         # UPDATED EP 8
